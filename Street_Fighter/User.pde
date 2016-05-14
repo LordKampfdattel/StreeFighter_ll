@@ -1,8 +1,8 @@
 class User {
-  CharacterType character;
+  Character character;
   boolean[] keys;
   
-  User(CharacterType character) {
+  User(Character character) {
     this.character = character;
     this.keys = new boolean[4];    //key: walkLeft ; walkRight ; jump ; attack
   }
