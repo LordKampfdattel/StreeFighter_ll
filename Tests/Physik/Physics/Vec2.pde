@@ -52,6 +52,10 @@ class Vec2
     return this.x*v.x+this.y*v.y;
   }
   
+  boolean isZero() {
+    return x == 0 && y == 0;
+  }
+  
   //gibt den Winkel zu der x-achse zurueck:
   float heading() {
     //man muss nen PVector nehmen, weil man die richtung nicht bestimmen kann
@@ -86,6 +90,10 @@ class Vec2
   Vec2 div(Vec2 other)
   {
     return new Vec2(x / other.x, y / other.y);
+  }
+  Vec2 neg()
+  {
+    return new Vec2(-x, -y);
   }
   
   

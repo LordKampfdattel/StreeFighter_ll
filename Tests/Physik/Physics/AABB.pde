@@ -1,3 +1,9 @@
+class CollisionResult
+{
+  Vec2 normal;
+  float penetration;
+}
+
 class AABB
 {
   public Vec2 min;
@@ -15,6 +21,16 @@ class AABB
     this.max = max.copy();
   }
   
+  public AABB copy()
+  {
+    return new AABB(min, max);
+  }
+  
+  public Vec2 getCenter()
+  {
+    return min.add(max.sub(min).div(2));
+  }
+  
   public boolean collides(AABB other)
   {
     if(max.x < other.min.x) return false;
@@ -24,33 +40,40 @@ class AABB
     return true;
   }
   
-  public Vec2 resolve(AABB other)
+  public CollisionResult calcCollisionResult(AABB other)
   {
-    float xOverlap = 0.0f, yOverlap = 0.0f;
+    CollisionResult result = new CollisionResult();
+    result.normal = new Vec2();
+    result.penetration = 0;
     
-    float centerX = (min.x + max.x) / 2.0f;
-    float otherCenterX = (other.min.x + other.max.x) / 2.0f;
-    float centerY = (min.y + max.y) / 2.0f;
-    float otherCenterY = (other.min.y + other.max.y) / 2.0f;
+    Vec2 n = other.getCenter().sub(getCenter());
+    float extent = (max.x - min.x) / 2;
+    float otherExtent = (other.max.x - other.min.x) / 2;
+    float xOverlap = extent + otherExtent - Math.abs(n.x);
     
-    if(centerX < otherCenterX)
+    if(xOverlap > 0)
     {
-      xOverlap = max.x - other.min.x;
-    }
-    else
-    {
-      xOverlap = other.max.x - min.x;
+      extent = (max.y - min.y) / 2;
+      otherExtent = (other.max.y - other.min.y) / 2;
+      float yOverlap = extent + otherExtent - Math.abs(n.y);
+      
+      if(yOverlap > 0)
+      {
+        if(xOverlap > yOverlap)
+        {
+          if(n.x < 0) result.normal = new Vec2(-1, 0);
+          else result.normal = new Vec2(1, 0);
+          result.penetration = xOverlap;
+        }
+        else
+        {
+          if(n.y < 0) result.normal = new Vec2(0, 1);
+          else result.normal = new Vec2(0, -1);
+          result.penetration = yOverlap;
+        }
+      }
     }
     
-    if(centerY < otherCenterY)
-    {
-      yOverlap = max.y - other.min.y;
-    }
-    else
-    {
-      yOverlap = other.max.y - min.y;
-    }
-    
-    return new Vec2(xOverlap, yOverlap);
+    return result;
   }
 }
