@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r7">
+    <folder id="0" name="Hopper">
+        <file id="0" name="Hopper/Head.png" width="1000" height="1000" pivot_x="0.423881" pivot_y="0.358209"/>
+        <file id="1" name="Hopper/TestHead.png" width="300" height="300" pivot_x="0.13" pivot_y="0.31"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="39">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                </key>
+                <key id="2" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="3" time="198">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="4" time="278">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="5" time="298">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+                <key id="6" time="400">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                </key>
+                <key id="7" time="703">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                    <object_ref id="1" timeline="3" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Head">
+                <key id="0" spin="-1">
+                    <object folder="0" file="0" x="2.564103" y="-5.555556" angle="0.196218" scale_x="1.091917" scale_y="0.938373"/>
+                </key>
+                <key id="1" time="100" spin="-1">
+                    <object folder="0" file="0" y="-5.555556" angle="308.59256" scale_x="1"/>
+                </key>
+                <key id="2" time="198">
+                    <object folder="0" file="0" y="-5.555556" angle="224.479144" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="3" time="278">
+                    <object folder="0" file="0" x="0" y="-5.555556" angle="359.924809" scale_x="1" scale_y="-0.952994"/>
+                </key>
+                <key id="4" time="298" spin="-1">
+                    <object folder="0" file="0" y="-5.555556" angle="158.765296" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="5" time="400" spin="-1">
+                    <object folder="0" file="0" y="-5.555556" angle="35.052374" scale_x="1"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="TestHead">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="34.081857" y="-585.159192" scale_x="1.847361" scale_y="1.708933"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="TestHead_000">
+                <key id="0" time="39" spin="0">
+                    <object folder="0" file="1" x="108.333333" y="-372.222222"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="TestHead_001">
+                <key id="0" time="703" spin="0">
+                    <object folder="0" file="1" x="907.692308" y="-112.820513" angle="281.917676" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
