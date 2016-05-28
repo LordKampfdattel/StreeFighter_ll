@@ -8,9 +8,9 @@ class Animation {
   private boolean loop=false;
   
   
-  public Animation(PImage spriteSheet, float spriteWidth, float spriteHeight, float speed, int scale, boolean loop) {
+  public Animation(PImage spriteSheet, float spriteWidth, float spriteHeight, float speed, float scale, boolean loop) {
     this.spriteSheet = spriteSheet;
-    this.spriteSheet.resize((int)this.spriteSheet.width*(int)scale, (int)this.spriteSheet.height*(int)scale);
+    this.spriteSheet.resize((int)(this.spriteSheet.width*scale), (int)(this.spriteSheet.height*scale));
     this.spriteWidth = spriteWidth*scale;
     this.spriteHeight = spriteHeight*scale;
     this.animationLength = (int)(this.spriteSheet.width/this.spriteWidth);

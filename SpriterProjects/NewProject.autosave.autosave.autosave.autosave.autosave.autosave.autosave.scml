@@ -4,6 +4,21 @@
         <file id="0" name="Hopper/Head.png" width="1000" height="1000" pivot_x="0.423881" pivot_y="0.358209"/>
         <file id="1" name="Hopper/TestHead.png" width="300" height="300" pivot_x="0.13" pivot_y="0.31"/>
     </folder>
+    <folder id="1" name="Hopper/Leg">
+        <file id="0" name="Hopper/Leg/UpperLeg.png" width="550" height="175" pivot_x="0.954545" pivot_y="0.417143"/>
+        <file id="1" name="Hopper/Leg/Foot.png" width="200" height="115" pivot_x="0.71" pivot_y="0.86087"/>
+    </folder>
+    <folder id="2" name="Hopper/Arm">
+        <file id="0" name="Hopper/Arm/ForeArm.png" width="350" height="100" pivot_x="0.88" pivot_y="0.47"/>
+        <file id="1" name="Hopper/Arm/Hand.png" width="125" height="125" pivot_x="0.888" pivot_y="0.496"/>
+        <file id="2" name="Hopper/Arm/UpperArm.png" width="500" height="100" pivot_x="0.868" pivot_y="0.54"/>
+    </folder>
+    <folder id="3" name="Hopper/Body">
+        <file id="0" name="Hopper/Body/Body.png" width="650" height="1000" pivot_x="0.546083" pivot_y="0.056801"/>
+    </folder>
+    <folder id="4" name="Hopper/Head">
+        <file id="0" name="Hopper/Head/Head.png" width="1000" height="1000" pivot_x="0.422388" pivot_y="0.361194"/>
+    </folder>
     <entity id="0" name="entity_000">
         <obj_info name="bone_000" type="bone" w="505.556" h="10"/>
         <obj_info name="bone_001" type="bone" w="430.005" h="10"/>
@@ -125,6 +140,13 @@
                     <object folder="0" file="0" x="2.777778" y="-5.555556" angle="0"/>
                 </key>
             </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="richtiger Anfang">
+        <animation id="0" name="StandingAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
         </animation>
     </entity>
 </spriter_data>

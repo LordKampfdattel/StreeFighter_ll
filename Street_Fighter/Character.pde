@@ -56,19 +56,32 @@ public class Character extends GameObject {
   
   public void update() {
     super.move(super.v);
+    this.updateAnimations();
   }
   
   public void render() {
     
+  }
+  
+  
+  private void updateAnimations() {
+    this.standingAnimation.update();
+    this.runningAnimation.update();
+    this.jumpingAnimation.update();
   }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 public class TestCharacter extends Character {          //75x100
+  private PImage image;
   
   public TestCharacter(Vec2 pos) {
     super(pos, "TestCharacter");
+    
+    this.image = loadImage("data/SpriteSheets/TestCharacter/StandingAnimation.png");
+    
+    super.standingAnimation = new Animation(this.image, 14376/12, 2529, 3, 0.5, true);
   }
   
   
@@ -77,6 +90,8 @@ public class TestCharacter extends Character {          //75x100
   }
   
   public void render() {
-    
+    translate(super.pos.x, super.pos.y);
+    super.standingAnimation.drawImage();
+    resetMatrix();
   }
 }
