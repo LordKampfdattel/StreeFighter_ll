@@ -79,9 +79,9 @@ public class TestCharacter extends Character {          //75x100
   public TestCharacter(Vec2 pos) {
     super(pos, "TestCharacter");
     
-    this.image = loadImage("data/SpriteSheets/TestCharacter/StandingAnimation.png");
+    //super.img = loadImage("Brokkoli.png");//"data/SpriteSheets/TestCharacter.png");
     
-    super.standingAnimation = new Animation(this.image, 14376/12, 2529, 3, 0.5, true);
+    super.standingAnimation = new Animation(loadImage("Brokkoli.png"), 14376/12, 2529, 3, 0.5, true);
   }
   
   

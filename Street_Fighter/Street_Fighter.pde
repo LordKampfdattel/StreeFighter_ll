@@ -6,7 +6,8 @@ TestCharacter c = new TestCharacter(new Vec2(width/2, height/2));
 void setup() {
   fullScreen();
   
-  loadImage("data/SpriteSheets/TestCharacter/StandingAnimation.png");
+  //load("data");
+  sketchPath("Street_Fighter/data");
   
   TheGame = new Game();
 }
