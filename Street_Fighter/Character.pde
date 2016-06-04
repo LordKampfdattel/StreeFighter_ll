@@ -80,13 +80,13 @@ public class TestCharacter extends Character {          //75x100
     super(pos, "TestCharacter");
     
     //super.img = loadImage("Brokkoli.png");//"data/SpriteSheets/TestCharacter.png");
-    
-    super.standingAnimation = new Animation(loadImage("Brokkoli.png"), 14376/12, 2529, 3, 0.5, true);
+    super.standingAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/StandingAnimation.png"), 14376/12, 2529, 3, 0.5, true, false);
   }
   
   
   public void update() {
-    super.update();
+    //super.update();
+    super.standingAnimation.update();
   }
   
   public void render() {

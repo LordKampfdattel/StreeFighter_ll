@@ -6,9 +6,10 @@ class Animation {
   private int currFrame=0;
   private float speed;
   private boolean loop=false;
+  private boolean mirrored=false;
   
   
-  public Animation(PImage spriteSheet, float spriteWidth, float spriteHeight, float speed, float scale, boolean loop) {
+  public Animation(PImage spriteSheet, float spriteWidth, float spriteHeight, float speed, float scale, boolean loop, boolean mirrored) {
     this.spriteSheet = spriteSheet;
     this.spriteSheet.resize((int)(this.spriteSheet.width*scale), (int)(this.spriteSheet.height*scale));
     this.spriteWidth = spriteWidth*scale;
@@ -16,6 +17,7 @@ class Animation {
     this.animationLength = (int)(this.spriteSheet.width/this.spriteWidth);
     this.speed = speed;
     this.loop = loop;
+    this.mirrored=mirrored;
   }
   
   
@@ -41,9 +43,20 @@ class Animation {
     }
   }
   
+  public void mirror() {
+    this.mirrored=!this.mirrored;
+  }
+  
+  public boolean isMirrored() {
+    return this.mirrored;
+  }
+  
   
   public void drawImage() {
     translate(this.spriteWidth/4, this.spriteHeight/4);
+    if(this.mirrored) {
+      scale(-1, 1);
+    }
     image(this.spriteSheet, (float)-this.spriteWidth/2, (float)-this.spriteHeight/2, (float)this.spriteWidth/2, (float)this.spriteHeight/2, (int)this.currFrame*(int)this.spriteWidth, 0, (int)(this.currFrame+1)*(int)this.spriteWidth, (int)this.spriteHeight);
     //image(this.spriteSheet, 0, 0, (float)this.spriteWidth/2, (float)this.spriteHeight/2, (int)this.currFrame*(int)this.spriteWidth, 0, (int)(this.currFrame+1)*(int)this.spriteWidth, (int)this.spriteHeight);
   }
