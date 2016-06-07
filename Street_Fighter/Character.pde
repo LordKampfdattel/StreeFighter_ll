@@ -81,17 +81,21 @@ public class TestCharacter extends Character {          //75x100
     
     //super.img = loadImage("Brokkoli.png");//"data/SpriteSheets/TestCharacter.png");
     super.standingAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/StandingAnimation.png"), 14376/12, 2529, 3, 0.5, true, false);
+    super.runningAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/WalkAnimation.png"), 17355/15, 2537, 2, 0.5, true, false);
   }
   
   
   public void update() {
     //super.update();
-    super.standingAnimation.update();
+    //super.standingAnimation.update();
+    super.runningAnimation.update();
+    super.move(-4, 0);
   }
   
   public void render() {
     translate(super.pos.x, super.pos.y);
-    super.standingAnimation.drawImage();
+    //super.standingAnimation.drawImage();
+    super.runningAnimation.drawImage();
     resetMatrix();
   }
 }
