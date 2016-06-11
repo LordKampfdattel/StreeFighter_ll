@@ -20,6 +20,7 @@ void setup()
   desc.mass = 1;
   desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b1 = world.createBody(desc);
+  b1.addImpulse(new Vec2(1000, 7000));
   
   desc = new BodyDesc();
   desc.position = new Vec2(400, 50);
@@ -33,7 +34,7 @@ void setup()
   desc.mass = 1;
   desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b3 = world.createBody(desc);
-  b3.addImpulse(new Vec2(-7000, -4000));
+  b3.addImpulse(new Vec2(-10000, -4000));
   
   last = (float)millis() / 1000.f;
 }
