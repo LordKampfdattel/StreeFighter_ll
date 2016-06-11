@@ -33,7 +33,7 @@ void setup()
   desc.mass = 1;
   desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b3 = world.createBody(desc);
-  b3.addImpulse(new Vec2(-6000, -5000));
+  b3.addImpulse(new Vec2(-7000, -4000));
   
   last = (float)millis() / 1000.f;
 }
