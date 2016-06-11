@@ -77,8 +77,13 @@ Collision aabbVsAABB(AABB a, AABB b)
     }
     else
     {
-      lastPenetration = aProj.subtract(bProj);
-      lastNormal = new Vec2(-edge.x, -edge.y);
+      float penetration = aProj.subtract(bProj);
+      
+      if(abs(penetration) > lastPenetration)
+      {
+        lastPenetration = penetration;
+        lastNormal = new Vec2(-edge.x, -edge.y);
+      }
     }
   }
   
@@ -94,6 +99,7 @@ interface Collider
 {
   abstract Collision collidesWith(Collider other);
   abstract Collision collidesWithAABB(AABB other);
+  abstract void setCenter(Vec2 center);
 }
 
 
@@ -103,9 +109,9 @@ class AABB implements Collider
   Vec2 center;
   Vec2 halfSize;
   
-  AABB(Vec2 centerRef, Vec2 halfSize)
+  AABB(Vec2 center, Vec2 halfSize)
   {
-    center = centerRef;
+    this.center = center.copy();
     this.halfSize = halfSize.copy();
   }
   
@@ -140,5 +146,9 @@ class AABB implements Collider
   Collision collidesWithAABB(AABB other)
   {
     return aabbVsAABB(this, other);
+  }
+  void setCenter(Vec2 center)
+  {
+    this.center = center.copy();
   }
 }

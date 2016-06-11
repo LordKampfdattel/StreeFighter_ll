@@ -18,17 +18,22 @@ void setup()
   BodyDesc desc = new BodyDesc();
   desc.position = new Vec2(200, 100);
   desc.mass = 1;
+  desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b1 = world.createBody(desc);
   
+  desc = new BodyDesc();
   desc.position = new Vec2(400, 50);
   desc.mass = 0.1f;
+  desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b2 = world.createBody(desc);
-  b2.addForce(new Vec2(0, 100));
+  b2.addForce(new Vec2(0, 40));
   
+  desc = new BodyDesc();
   desc.position = new Vec2(600, 400);
   desc.mass = 1;
+  desc.collider = new AABB(desc.position, new Vec2(25, 25));
   b3 = world.createBody(desc);
-  b3.addImpulse(new Vec2(-2000, -5000));
+  b3.addImpulse(new Vec2(-6000, -5000));
   
   last = (float)millis() / 1000.f;
 }
