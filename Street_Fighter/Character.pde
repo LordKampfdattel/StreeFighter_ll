@@ -88,7 +88,7 @@ public class TestCharacter extends Character {          //75x100
     
     ArrayList<SkillBox> boxes = new ArrayList<SkillBox>();
     boxes.add(new SkillBox(super.getPosition(), 100, 50, 60));
-    super.jab = new ActiveSkill(new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/StandingAnimation.png"), 9366/6, 2478, 3, 0.5, true, false), boxes);
+    super.jab = new ActiveSkill(new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/JabAnimation.png"), 9366/6, 2478, 3, 0.5, true, false), boxes);
   }
   
   
