@@ -1,4 +1,3 @@
-
 // Ein 2D-Punkt oder eine 2D-Richtung
 class Vec2
 {

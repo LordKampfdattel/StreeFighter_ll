@@ -1,44 +1,50 @@
-PhysicsWorld world;
-Body body;
+float last = 0;
+float time = 0;
+PhysicsEngine world = new PhysicsEngine(new Vec2(0, 100));
+Body b1, b2, b3;
+
+void drawBody(Body b)
+{
+  resetMatrix();
+  translate(b.position.x, b.position.y);
+  fill(255, 255, 255);
+  rect(-25, -25, 50, 50);
+}
 
 void setup()
 {
   size(800, 600);
   
-  world = new PhysicsWorld(new Vec2(0, 100));
-  
   BodyDesc desc = new BodyDesc();
-  desc.pos = new Vec2(200, 300);
+  desc.position = new Vec2(200, 100);
   desc.mass = 1;
-  desc.collider = new AABB(new Vec2(), new Vec2());
-  body = world.createBody(desc);
+  b1 = world.createBody(desc);
   
-  BodyDesc desc2 = new BodyDesc();
-  desc2.pos = new Vec2(400, 300);
-  desc2.mass = 10;
-  desc2.collider = new AABB(new Vec2(), new Vec2());
-  world.createBody(desc2);
+  desc.position = new Vec2(400, 50);
+  desc.mass = 0.1f;
+  b2 = world.createBody(desc);
+  b2.addForce(new Vec2(0, 100));
   
-  BodyDesc desc3 = new BodyDesc();
-  desc3.pos = new Vec2(600, 300);
-  desc3.mass = 100;
-  desc3.collider = new AABB(new Vec2(), new Vec2());
-  world.createBody(desc3);
+  desc.position = new Vec2(600, 400);
+  desc.mass = 1;
+  b3 = world.createBody(desc);
+  b3.addImpulse(new Vec2(-2000, -5000));
   
-  
-  //body.addImpulse(new Vec2(0, -10000));
+  last = (float)millis() / 1000.f;
 }
 
 void draw()
 {
-  world.tick(1.0f / 60.0f);
+  background(#dddddd);
   
-  background(255, 255, 255);
+  float cur = (float)millis() / 1000.f;
+  float delta = cur - last;
+  last = cur;
+  time += delta;
   
-  fill(255, 0, 0);
+  world.update(delta);
   
-  for(int i = 0; i < world.bodies.size(); i++)
-  {
-    rect(world.bodies.get(i).pos.x - 50,world.bodies.get(i).pos.y - 50, 100, 100);
-  }
+  drawBody(b1);
+  drawBody(b2);
+  drawBody(b3);
 }

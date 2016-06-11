@@ -1,38 +1,51 @@
 class BodyDesc
 {
-  Vec2 pos;
+  Vec2 position;
   float mass;
-  AABB collider;
 }
 
 class Body
 {
-  private Vec2 accel;
-  private Vec2 vel;
-  private Vec2 pos;
-  private float mass;
-  private AABB collider;
-  private ArrayList<Vec2> forces;
-  private ArrayList<Vec2> impulses;
+  Vec2 position;
+  Vec2 velocity;
+  float mass;
+  ArrayList<Vec2> impulses;
+  ArrayList<Vec2> forces;
   
-  public Body(BodyDesc desc)
+  Body(BodyDesc desc)
   {
-    accel = new Vec2();
-    vel = new Vec2();
-    pos = desc.pos.copy();
+    position = desc.position.copy();
+    velocity = new Vec2();
     mass = desc.mass;
-    collider = desc.collider.copy();
-    forces = new ArrayList<Vec2>();
     impulses = new ArrayList<Vec2>();
+    forces = new ArrayList<Vec2>();
   }
   
-  public void addForce(Vec2 force)
+  void addImpulse(Vec2 impulse)
   {
-    forces.add(force.copy());
+    impulses.add(impulse);
   }
   
-  public void addImpulse(Vec2 impulse)
+  int addForce(Vec2 force)
   {
-    impulses.add(impulse.copy());
+    for(int i = 0; i < forces.size(); i++)
+    {
+      if(forces.get(i).x == 0 && forces.get(i).y == 0)
+      {
+        forces.set(i, force);
+        return i;
+      }
+    }
+    
+    forces.add(force);
+    return forces.size() - 1;
+  }
+  
+  void removeForce(int index)
+  {
+    if(index >= 0 && index < forces.size())
+    {
+      forces.set(index, new Vec2());
+    }
   }
 }
