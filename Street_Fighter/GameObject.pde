@@ -19,7 +19,7 @@ abstract class GameObject {
   }
   
   
-  public Vec2 givePosition() {
+  public Vec2 getPosition() {
     return this.pos;
   }
   

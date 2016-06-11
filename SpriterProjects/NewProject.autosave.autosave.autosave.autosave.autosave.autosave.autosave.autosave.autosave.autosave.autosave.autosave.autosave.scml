@@ -476,10 +476,10 @@
                     <object_ref id="10" parent="5" timeline="24" key="0" z_index="10"/>
                     <object_ref id="11" parent="6" timeline="25" key="0" z_index="11"/>
                     <object_ref id="12" parent="7" timeline="26" key="0" z_index="12"/>
-                    <object_ref id="13" parent="12" timeline="27" key="1" z_index="13"/>
+                    <object_ref id="13" parent="12" timeline="27" key="0" z_index="13"/>
                 </key>
                 <key id="1" time="150">
-                    <bone_ref id="0" timeline="0" key="1"/>
+                    <bone_ref id="0" timeline="0" key="0"/>
                     <bone_ref id="1" parent="0" timeline="1" key="0"/>
                     <bone_ref id="2" parent="0" timeline="2" key="1"/>
                     <bone_ref id="3" parent="2" timeline="3" key="1"/>
@@ -489,10 +489,10 @@
                     <bone_ref id="7" parent="6" timeline="7" key="0"/>
                     <bone_ref id="8" parent="0" timeline="8" key="1"/>
                     <bone_ref id="9" parent="8" timeline="9" key="0"/>
-                    <bone_ref id="10" parent="9" timeline="10" key="1"/>
-                    <bone_ref id="11" parent="0" timeline="11" key="1"/>
+                    <bone_ref id="10" parent="9" timeline="10" key="0"/>
+                    <bone_ref id="11" parent="0" timeline="11" key="0"/>
                     <bone_ref id="12" parent="11" timeline="12" key="0"/>
-                    <bone_ref id="13" parent="12" timeline="13" key="1"/>
+                    <bone_ref id="13" parent="12" timeline="13" key="0"/>
                     <object_ref id="0" parent="12" timeline="14" key="0" z_index="0"/>
                     <object_ref id="1" parent="11" timeline="15" key="0" z_index="1"/>
                     <object_ref id="2" parent="10" timeline="16" key="0" z_index="2"/>
@@ -506,15 +506,12 @@
                     <object_ref id="10" parent="5" timeline="24" key="0" z_index="10"/>
                     <object_ref id="11" parent="6" timeline="25" key="0" z_index="11"/>
                     <object_ref id="12" parent="7" timeline="26" key="0" z_index="12"/>
-                    <object_ref id="13" parent="13" timeline="27" key="3" z_index="13"/>
+                    <object_ref id="13" parent="12" timeline="27" key="0" z_index="13"/>
                 </key>
             </mainline>
             <timeline id="0" obj="0" name="bone_000" object_type="bone">
-                <key id="0">
+                <key id="0" spin="0">
                     <bone x="17.154176" y="-265.086201" angle="94.134584"/>
-                </key>
-                <key id="1" time="150" spin="-1">
-                    <bone x="17.154176" y="-265.086201" angle="98.179779"/>
                 </key>
             </timeline>
             <timeline id="1" obj="1" name="bone_001" object_type="bone">
@@ -527,7 +524,7 @@
                     <bone x="804.70213" y="311.542231" angle="167.498576"/>
                 </key>
                 <key id="1" time="150">
-                    <bone x="804.70213" y="311.542231" angle="83.911015"/>
+                    <bone x="804.70213" y="311.542231" angle="90.198644"/>
                 </key>
             </timeline>
             <timeline id="3" obj="3" name="bone_003" object_type="bone">
@@ -572,7 +569,7 @@
                     <bone x="37.287007" y="100.094464" angle="157.795314"/>
                 </key>
                 <key id="1" time="150">
-                    <bone x="37.287007" y="100.094464" angle="146.851711"/>
+                    <bone x="37.287007" y="100.094464" angle="153.344632"/>
                 </key>
             </timeline>
             <timeline id="9" obj="9" name="bone_009" object_type="bone">
@@ -581,19 +578,13 @@
                 </key>
             </timeline>
             <timeline id="10" obj="10" name="bone_010" object_type="bone">
-                <key id="0">
+                <key id="0" spin="0">
                     <bone x="424.291885" y="1.769875" angle="280.430003"/>
-                </key>
-                <key id="1" time="150" spin="-1">
-                    <bone x="424.291885" y="1.769875" angle="285.342845"/>
                 </key>
             </timeline>
             <timeline id="11" obj="11" name="bone_011" object_type="bone">
-                <key id="0" spin="-1">
+                <key id="0" spin="0">
                     <bone x="36.729243" y="-95.91078" angle="193.544867"/>
-                </key>
-                <key id="1" time="150">
-                    <bone x="36.729243" y="-95.91078" angle="189.213464"/>
                 </key>
             </timeline>
             <timeline id="12" obj="12" name="bone_012" object_type="bone">
@@ -602,11 +593,8 @@
                 </key>
             </timeline>
             <timeline id="13" obj="13" name="bone_013" object_type="bone">
-                <key id="0" spin="-1">
+                <key id="0" spin="0">
                     <bone x="411.844608" y="0.136886" angle="266.761718"/>
-                </key>
-                <key id="1" time="150">
-                    <bone x="411.844608" y="0.136886" angle="264.26856"/>
                 </key>
             </timeline>
             <timeline id="14" name="LowerLeg_000">
@@ -675,17 +663,8 @@
                 </key>
             </timeline>
             <timeline id="27" name="Foot_000">
-                <key id="0">
-                    <object folder="1" file="1" x="1.28983" y="-48.645004" angle="172.056528"/>
-                </key>
-                <key id="1" spin="-1">
+                <key id="0" spin="0">
                     <object folder="1" file="1" x="363.204418" y="1.597004" angle="78.818246"/>
-                </key>
-                <key id="2" time="150">
-                    <object folder="1" file="1" x="363.341865" y="4.071855" angle="75.899499"/>
-                </key>
-                <key id="3" time="150">
-                    <object folder="1" file="1" x="0.928466" y="-48.653242" angle="171.630939"/>
                 </key>
             </timeline>
         </animation>

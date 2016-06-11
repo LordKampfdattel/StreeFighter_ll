@@ -40,6 +40,9 @@ public class Character extends GameObject {
   private Animation runningAnimation;
   private Animation jumpingAnimation;
   
+  //skills:
+  private Skill jab;
+  
   private String name;
   
   
@@ -82,20 +85,28 @@ public class TestCharacter extends Character {          //75x100
     //super.img = loadImage("Brokkoli.png");//"data/SpriteSheets/TestCharacter.png");
     super.standingAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/StandingAnimation.png"), 14376/12, 2529, 3, 0.5, true, false);
     super.runningAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/WalkAnimation.png"), 17355/15, 2537, 2, 0.5, true, false);
+    
+    ArrayList<SkillBox> boxes = new ArrayList<SkillBox>();
+    boxes.add(new SkillBox(super.getPosition(), 100, 50, 60));
+    super.jab = new ActiveSkill(new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/StandingAnimation.png"), 9366/6, 2478, 3, 0.5, true, false), boxes);
   }
   
   
   public void update() {
     //super.update();
     //super.standingAnimation.update();
-    super.runningAnimation.update();
-    super.move(-4, 0);
+    //super.runningAnimation.update();
+    //super.move(-4, 0);
+    
+    super.jab.getAnimation().update();
   }
   
   public void render() {
     translate(super.pos.x, super.pos.y);
     //super.standingAnimation.drawImage();
-    super.runningAnimation.drawImage();
+    //super.runningAnimation.drawImage();
+    
+    super.jab.getAnimation().drawImage();
     resetMatrix();
   }
 }

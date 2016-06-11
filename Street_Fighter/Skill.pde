@@ -36,7 +36,7 @@ class Skill {
   }
   
   
-  public Animation giveAnimation() {
+  public Animation getAnimation() {
     return this.animation;
   }
 }
