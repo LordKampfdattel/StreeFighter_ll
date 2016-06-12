@@ -60,8 +60,9 @@ Collision aabbVsAABB(AABB a, AABB b)
   Vec2[] edges = a.getEdges();
   Vec2[] pointsA = a.getPoints();
   Vec2[] pointsB = b.getPoints();
-  float lastPenetration = 0;
-  Vec2 lastNormal = new Vec2();
+  boolean collision = true;
+  Vec2 normal = new Vec2();
+  float penetration = Float.POSITIVE_INFINITY;
   
   for(int i = 0; i < edges.length; i++)
   {
@@ -73,24 +74,30 @@ Collision aabbVsAABB(AABB a, AABB b)
     
     if(!aProj.intersects(bProj))
     {
-      return null;
+      collision = false;
+      break;
     }
-    else
+    
+    float p = abs(bProj.subtract(aProj));
+    if(p < penetration)
     {
-      float penetration = aProj.subtract(bProj);
-      
-      if(abs(penetration) > lastPenetration)
-      {
-        lastPenetration = penetration;
-        lastNormal = new Vec2(-edge.x, -edge.y);
-      }
+      normal = edge.copy();
+      penetration = p;
     }
   }
   
-  Collision result = new Collision();
-  result.normal = lastNormal;
-  result.penetration = lastPenetration;
-  return result;
+  if(collision)
+  {
+    Collision result = new Collision();
+    result.normal = normal;
+    result.penetration = penetration;
+    
+    return result;
+  }
+  else
+  {
+    return null;
+  }
 }
 
 
@@ -145,7 +152,7 @@ class AABB implements Collider
   }
   Collision collidesWithAABB(AABB other)
   {
-    return aabbVsAABB(this, other);
+    return aabbVsAABB(other, this);
   }
   void setCenter(Vec2 center)
   {

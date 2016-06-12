@@ -9,7 +9,7 @@ class Body
 {
   Vec2 position;
   Vec2 velocity;
-  float mass;
+  float invMass;
   Collider collider;
   ArrayList<Vec2> impulses;
   ArrayList<Vec2> forces;
@@ -18,7 +18,8 @@ class Body
   {
     position = desc.position.copy();
     velocity = new Vec2();
-    mass = desc.mass;
+    if(desc.mass == 0) invMass = 0;
+    else invMass = 1.f / desc.mass;
     collider = desc.collider;
     impulses = new ArrayList<Vec2>();
     forces = new ArrayList<Vec2>();
