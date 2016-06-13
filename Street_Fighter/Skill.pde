@@ -1,12 +1,15 @@
 //-----------------------------------------------------------------------------------------------------------------------
 class SkillBox extends Hitbox {
-  private int curLength=0;
+  private int curLength;
+  private int delay;
   private int activeLength;
     
     
-  SkillBox(Vec2 pos, float boxWidth, float boxHeight, int activeLength) {
+  SkillBox(Vec2 pos, float boxWidth, float boxHeight, int activeLength, int delay) {
     super(pos, boxWidth, boxHeight);
-      
+    
+    this.curLength=-delay;
+    this.delay=delay;
     this.activeLength=activeLength;
   }
     
@@ -14,13 +17,27 @@ class SkillBox extends Hitbox {
   public void update() {
     this.curLength++;
   }
+  
+  public void render() {
+    if(this.isActive()) {
+      super.render();
+    }
+  }
     
   public int giveActiveLength() {
     return this.activeLength;
   }
+  
+  public boolean isActive() {
+    return this.curLength>0 && !this.finished();
+  }
     
   public boolean finished() {
     return this.curLength>=this.activeLength;
+  }
+  
+  public void reset() {
+    this.curLength=-this.delay;
   }
 }
 //-----------------------------------------------------------------------------------------------------------------------
@@ -54,7 +71,30 @@ class ActiveSkill extends Skill {
   }
   
   
-  public ArrayList<SkillBox> giveBoxes() {
+  public void update() {
+    super.getAnimation().update();
+    
+    for(int i=0 ; i<this.boxes.size() ; i++) {
+      SkillBox mb = (SkillBox) this.boxes.get(i);
+      mb.update();
+    }
+    
+    //reseting SkillBoxes:
+    if(super.getAnimation().finished() && super.getAnimation().isLooped()) {
+      this.resetSkillBoxes();
+    }
+  }
+  
+  
+  private void resetSkillBoxes() {
+    for(int i=0 ; i<this.boxes.size() ; i++) {
+      SkillBox mb = (SkillBox) this.boxes.get(i);
+      mb.reset();
+    }
+  }
+  
+  
+  public ArrayList<SkillBox> getBoxes() {
     return this.boxes;
   }
   

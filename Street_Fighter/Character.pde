@@ -41,7 +41,7 @@ public class Character extends GameObject {
   private Animation jumpingAnimation;
   
   //skills:
-  private Skill jab;
+  private ActiveSkill jab;
   
   private String name;
   
@@ -87,7 +87,7 @@ public class TestCharacter extends Character {          //75x100
     super.runningAnimation = new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/WalkAnimation.png"), 17355/15, 2537, 2, 0.5, true, false);
     
     ArrayList<SkillBox> boxes = new ArrayList<SkillBox>();
-    boxes.add(new SkillBox(super.getPosition(), 100, 50, 60));
+    boxes.add(new SkillBox(super.getPosition().add(new Vec2(-140, -60)), 30, 30, 2, 8));
     super.jab = new ActiveSkill(new Animation(TheGame.getTextureManager().get("data/SpriteSheets/TestCharacter/JabAnimation.png"), 9366/6, 2478, 3, 0.5, true, false), boxes);
   }
   
@@ -98,7 +98,15 @@ public class TestCharacter extends Character {          //75x100
     //super.runningAnimation.update();
     //super.move(-4, 0);
     
-    super.jab.getAnimation().update();
+    //super.jab.getAnimation().update();
+    super.jab.update();
+    
+    for(int i=0 ; i<super.jab.getBoxes().size() ; i++) {
+      SkillBox mb = (SkillBox) super.jab.getBoxes().get(i);
+      
+      //mb.update();
+      mb.render();
+    }
   }
   
   public void render() {

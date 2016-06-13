@@ -51,6 +51,15 @@ class Animation {
     return this.mirrored;
   }
   
+  public boolean isLooped() {
+    return this.loop;
+  }
+  
+  
+  public boolean finished() {
+    return this.currFrame>=this.animationLength-1;
+  }
+  
   
   public void drawImage() {
     translate(this.spriteWidth/4, this.spriteHeight/4);
