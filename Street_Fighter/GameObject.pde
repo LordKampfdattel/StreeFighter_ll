@@ -15,7 +15,7 @@ abstract class GameObject {
   }
   
   public void move(Vec2 p) {
-    this.pos.add(p);
+    this.pos=this.pos.add(p);
   }
   
   
