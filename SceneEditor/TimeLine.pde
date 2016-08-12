@@ -19,13 +19,18 @@ class TimeLine extends MenuPart {
     rect(super.pos.x-super.size.x/2, super.pos.y-super.size.y/2, super.size.x, super.size.y);
     
     fill(0);
-    line((super.pos.x-super.size.x/2)+((float)this.curTime/(float)this.maxTime)*super.size.x, super.pos.y-super.size.y/2, (super.pos.x-super.size.x/2)+((float)this.curTime/(float)this.maxTime)*super.size.x, super.pos.y+super.size.y/2);
+    line((super.pos.x-super.size.x/2), 
+      super.pos.y, 
+      (super.pos.x-super.size.x/2)+((float)this.curTime/(float)this.maxTime)*super.size.x, 
+      super.pos.y);
   }
   
   
   private void updateMouseCollision() {
     if(super.mouseCollides() && mousePressed) {
-      this.curTime=round((mouseX-(super.pos.x-super.size.x/2))/(super.size.x-(super.pos.x-super.size.x/2)))*this.maxTime;//round(((mouseX-((width-(super.pos.x-super.size.x/2))/4))/super.size.x)*this.maxTime);
+      //this.curTime=round((mouseX-(super.pos.x-super.size.x/2))/(super.size.x-(super.pos.x-super.size.x/2)))*this.maxTime;//round(((mouseX-((width-(super.pos.x-super.size.x/2))/4))/super.size.x)*this.maxTime);
+     
+      curTime = round((mouseX - (super.pos.x - super.size.x / 2)) / super.size.x * (float)maxTime);
     }
     
     if(this.curTime<0) {
