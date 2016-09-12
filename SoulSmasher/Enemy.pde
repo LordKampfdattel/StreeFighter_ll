@@ -46,7 +46,7 @@ class Enemy extends DynamicGameObject {
   
   
   public Enemy(Vec2 pos, int damage, int attackSpeed, int defense, int agility, XML script) {
-    super(pos, damage, attackSpeed, defense, agility);
+    super(pos, damage, attackSpeed, defense, agility, true);
     
     this.script=script;
     
@@ -112,8 +112,20 @@ class Enemy extends DynamicGameObject {
         }
       }
       
+      if(children[i].getName()=="ownLifeCondition%") {                                                              //ueberprueft hp in %
+        if(this.ownLifeCondition(children[i].getString("Operator"), children[i].getInt("Value"))) {
+          this.manageBehavior(children[i].getChildren());
+        }
+      }
+      
       if(children[i].getName()=="playerLifeCondition") {
         if(this.playerLifeCondition(children[i].getString("Operator"), children[i].getFloat("Value"))) {
+          this.manageBehavior(children[i].getChildren());
+        }
+      }
+      
+      if(children[i].getName()=="playerLifeCondition%") {                                                          //ueberprueft hp in %
+        if(this.playerLifeCondition(children[i].getString("Operator"), children[i].getInt("Value"))) {
           this.manageBehavior(children[i].getChildren());
         }
       }
@@ -178,7 +190,7 @@ class Enemy extends DynamicGameObject {
     
   }
   
-  private void circleAround(Vec2 pos) {
+  private void circleAround(Vec2 pos, float r) {
     
   }
   
@@ -271,7 +283,15 @@ class Enemy extends DynamicGameObject {
     return false;
   }
   
+  private boolean ownLifeCondition(String operator, int percent) {
+    return false;
+  }
+  
   private boolean playerLifeCondition(String operator, float value) {
+    return false;
+  }
+  
+  private boolean playerLifeCondition(String operator, int percent) {
     return false;
   }
   

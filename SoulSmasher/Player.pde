@@ -7,7 +7,7 @@ class Player extends DynamicGameObject {
   private classType classType;
   
   public Player(Vec2 pos, classType classType) {
-    super(pos, 0, 0, 0, 0);
+    super(pos, 0, 0, 0, 0, false);
     
     this.classType=classType;
   }

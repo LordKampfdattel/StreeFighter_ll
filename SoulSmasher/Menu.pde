@@ -4,6 +4,7 @@ class Menu {
   private Vec2 size;
   private String headingLine;
   private color c;
+  private PImage background=null;
   
   public Menu(Vec2 pos, Vec2 size, String headingLine, color c) {
     this.parts = new ArrayList<MenuPart>();
@@ -14,6 +15,18 @@ class Menu {
     this.size=size;
     this.headingLine=headingLine;
     this.c=c;
+  }
+  
+  
+  public Menu(Vec2 pos, Vec2 size, String headingLine, PImage background) {              //fuer Hintergrundbilder zB im hauptMenu [optional] (irgendwann vielleicht sogar ne Animation) 
+    this.parts = new ArrayList<MenuPart>();
+    
+    this.pos = new Vec2();
+    this.pos=pos;
+    this.size = new Vec2();
+    this.size=size;
+    this.headingLine=headingLine;
+    this.background=background;
   }
   
   

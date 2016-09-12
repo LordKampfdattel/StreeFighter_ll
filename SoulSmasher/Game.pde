@@ -8,6 +8,8 @@ public enum GameState {
 
 
 class Game {
+  private Player ThePlayer;
+  
   private ArrayList<GameObject> objectColl;
   
   //sound:
@@ -33,6 +35,8 @@ class Game {
   
   public Game() {
     this.objectColl = new ArrayList<GameObject>();
+    
+    this.objectColl.add(new Projectile(new Vec2(width/2, height/2), new Vec2(1, 0), null, loadXML("data/Projectile/Scripts/TestScript.xml")));
     
     this.minim = new Minim(SoulSmasher.this);
     this.player = new ArrayList<AudioPlayer>();
@@ -158,7 +162,7 @@ class Game {
   //Level:
   private void loadLevel() {
     Level ml = (Level) this.level.get(this.curLevel);
-    ml.loadMap();
+    //ml.loadMap();
   }
   
   private void loadNewLevel(Level l) {
@@ -195,5 +199,13 @@ class Game {
   public void addSound(String path) {
     AudioPlayer np = this.minim.loadFile(path);
     this.player.add(np);
+  }
+  
+  
+  
+  
+  //getter:
+  public Player getPlayer() {
+    return this.ThePlayer;
   }
 }

@@ -59,6 +59,13 @@ class Vec2
     return pv.heading();
   }
   
+  void rotate(float rad) {
+    PVector pv = new PVector(this.x, this.y);
+    pv.rotate(rad);
+    this.x=pv.x;
+    this.x=pv.y;
+  }
+  
   // Die nächsten Methoden führen arithmetische Rechnungen aus
   // Mal und geteilt geht mit Skalaren sowie Vektoren
   // Keine der Methoden verändert die eigenen Attribute, sondern sie erzeugen alle neue Vektoren

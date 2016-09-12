@@ -8,12 +8,14 @@ abstract class DynamicGameObject extends GameObject {        //die objets die au
   private int defense;
   private int agility;  //Beweglichkeit
   
+  private boolean evil;
+  
   private Vec2 lineOfSight;    //weil man auch woander hingucken kann als da wo man hingeht.
   
   private ArrayList<CCType> ccs;
   
   
-  public DynamicGameObject(Vec2 pos, int damage, int attackSpeed, int defense, int agility) {
+  public DynamicGameObject(Vec2 pos, int damage, int attackSpeed, int defense, int agility, boolean evil) {
     super(pos);
     
     this.damage=damage;
@@ -51,5 +53,9 @@ abstract class DynamicGameObject extends GameObject {        //die objets die au
   
   public ArrayList<CCType> getCCs() {
     return this.ccs;
+  }
+  
+  public boolean isEvil() {
+    return this.evil;
   }
 }

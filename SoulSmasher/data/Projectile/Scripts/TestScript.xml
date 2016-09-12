@@ -1,0 +1,14 @@
+<TestProjectile>
+	<Statts>
+		<setRandomDirection/>
+		<setSpeed Value="1"/>
+		<setImage Path="Test" Scale="1"/>
+		<setMovementType Type="Special"/>
+		<setPolynomialFunction Degree="3" Value0="1" Value1="0" Value2="0" Value3="6" xs="3"/>
+		<setDirection x="1" y="0"/>
+	</Statts>
+	
+	<Behavior>
+		<moveSpecial/>
+	</Behavior>
+</TestProjectile>
