@@ -9,6 +9,27 @@ public enum MovementType {
 //--------------------------------------------------------------------------------------------------------------
 
 
+
+public interface AngleFunc {
+  public abstract float get(float t);
+}
+
+public class LinearAngleFunc implements AngleFunc {
+  private float m;
+  private int startTime;
+  
+  public LinearAngleFunc(float m, int startTime) {
+    this.m = m;
+    this.startTime = startTime;
+  }
+  
+  public float get(float t) {
+    return m * (t - startTime);
+  }
+}
+
+
+
 class Projectile extends GameObject {
   private PImage img;
   private float imgScale;
@@ -20,7 +41,7 @@ class Projectile extends GameObject {
   private float speed;
   private int damage;
   private XML script;
-  private Function function;
+  private LinearAngleFunc function;
   private MovementType movementType=MovementType.Normal;
   
   //fuer den Getroffenden Gegner um den zu debuffen
@@ -34,133 +55,137 @@ class Projectile extends GameObject {
   
   //------------------------------------------------------------------------------------------------------------
   
-  private class Function {                      //WICHTIG: man muss die ableitung angeben!!!!!
-    private String functionType;
+  
+  
+  
+  
+  //private class Function {                      //WICHTIG: man muss die ableitung angeben!!!!!
+  //  private String functionType;
     
-    private int degree;
-    private float[] values;
+  //  private int degree;
+  //  private float[] values;
     
-    private float a;
-    private float d;          //verschiebung
+  //  private float a;
+  //  private float d;          //verschiebung
     
-    private float x;
-    private float xs;
+  //  private float x;
+  //  private float xs;
     
     
-    public Function(int degree, float[] values, float xs) {            //Polynom ; degree=grad
-      this.degree=degree;
+  //  public Function(int degree, float[] values, float xs) {            //Polynom ; degree=grad
+  //    this.degree=degree;
       
-      this.values = new float[this.degree+1];
-      this.values=values;
+  //    this.values = new float[this.degree+1];
+  //    this.values=values;
     
-      this.x=0;
-      this.xs=xs;
+  //    this.x=0;
+  //    this.xs=xs;
       
-      this.functionType = "Polynomial";
-    }
+  //    this.functionType = "Polynomial";
+  //  }
     
-    public Function(float a, float d, float xs) {
-      this.a=a;
-      this.d=d;
+  //  public Function(float a, float d, float xs) {
+  //    this.a=a;
+  //    this.d=d;
       
-      this.xs=xs;
+  //    this.xs=xs;
       
-      this.functionType = "Sinus";
-    }
+  //    this.functionType = "Sinus";
+  //  }
     
     
     
-    public void update() {
-      this.x++;
-    }
+  //  public void update() {
+  //    this.x++;
+  //  }
     
     
-    public void reset() {
-      this.x=0;
-    }
+  //  public void reset() {
+  //    this.x=0;
+  //  }
     
     
-    //getter:    
-    public float getX() {
-      return this.x;
-    }
+  //  //getter:    
+  //  public float getX() {
+  //    return this.x;
+  //  }
     
-    public float getXs() {
-      return this.xs;
-    }
+  //  public float getXs() {
+  //    return this.xs;
+  //  }
     
-    public float getValue() {
-      float finalValue=0;
+  //  public float getValue() {
+  //    float finalValue=0;
       
-      if(this.functionType == "Polynomial") {
-        for(int i=0 ; i<this.values.length ; i++) {
-          float value = this.values[this.values.length-1-i];
+  //    if(this.functionType == "Polynomial") {
+  //      for(int i=0 ; i<this.values.length ; i++) {
+  //        float value = this.values[this.values.length-1-i];
           
-          if(i == 0) {
-            finalValue += value;
-          }else {
-            finalValue += value*(pow(this.x*this.xs, this.degree-i-1));
-          }
-        }
+  //        if(i == 0) {
+  //          finalValue += value;
+  //        }else {
+  //          finalValue += value*(pow(this.x*this.xs, this.degree-i-1));
+  //        }
+  //      }
         
-        return finalValue;
-      }
+  //      return finalValue;
+  //    }
       
-      if(this.functionType == "Sinus") {
-        return this.a*sin((this.x*this.xs)-this.d);
-      }
+  //    if(this.functionType == "Sinus") {
+  //      return this.a*sin((this.x*this.xs)-this.d);
+  //    }
       
-      return 0;
-    }
+  //    return 0;
+  //  }
     
-    public float getValue(float time) {
-      float finalValue=0;
+  //  public float getValue(float time) {
+  //    float finalValue=0;
       
-      if(this.functionType == "Polynomial") {
-        for(int i=0 ; i<this.values.length ; i++) {
-          float value = this.values[this.values.length-1-i];
+  //    if(this.functionType == "Polynomial") {
+  //      for(int i=0 ; i<this.values.length ; i++) {
+  //        float value = this.values[this.values.length-1-i];
           
-          if(i == 0) {
-            finalValue += value;
-          }else {
-            finalValue += value*(pow(time*this.xs, this.degree-i-1));
-          }
-        }
+  //        if(i == 0) {
+  //          finalValue += value;
+  //        }else {
+  //          finalValue += value*(pow(time*this.xs, this.degree-i-1));
+  //        }
+  //      }
         
-        return finalValue;
-      }
+  //      return finalValue;
+  //    }
       
-      if(this.functionType == "Sinus") {
-        return this.a*sin(time*this.xs-this.d);
-      }
+  //    if(this.functionType == "Sinus") {
+  //      return this.a*sin(time*this.xs-this.d);
+  //    }
       
-      return 0;
-    }
+  //    return 0;
+  //  }
     
-    public float getAlphaDeg() {
-      return 180 - (180 - 90 - atan(abs(this.getValue())));              HIER IST DER FEHLER!!!
-    }
+  //  public float getAlphaDeg() {
+  //    return 180 - (180 - 90 - atan(abs(this.getValue())));       //       HIER IST DER FEHLER!!!
+  //  }
     
-    public float getAlphaDeg(float time) {
-      return 180 - (180 - 90 - atan(abs(this.getValue(time))));
-    }
+  //  public float getAlphaDeg(float time) {
+  //    return 180 - (180 - 90 - atan(abs(this.getValue(time))));
+  //  }
     
-    public float getAlphaRad() {
-      float deg = 180 - (180 - 90 - atan(abs(this.getValue())));
+  //  public float getAlphaRad() {
+  //    float deg = 180 - (180 - 90 - atan(abs(this.getValue())));
       
-      return deg*(PI/180);
-    }
+  //    return deg*(PI/180);
+  //  }
     
-    public float getAlphaRad(float time) {
-      float deg = 180 - (180 - 90 - atan(abs(this.getValue(time))));
+  //  public float getAlphaRad(float time) {
+  //    float deg = 180 - (180 - 90 - atan(abs(this.getValue(time))));
       
-      return deg*(PI/180);
-    }
+  //    return deg*(PI/180);
+  //  }
     
-    public String getType() {
-      return this.functionType;
-    }
-  }
+  //  public String getType() {
+  //    return this.functionType;
+  //  }
+  //}
   
   //------------------------------------------------------------------------------------------------------------
   
@@ -342,7 +367,7 @@ class Projectile extends GameObject {
     this.livingTime++;
     
     if(this.function != null) {
-      this.function.update();
+      //this.function.update();
     }
     
     if(this.animation != null) {
@@ -408,11 +433,12 @@ class Projectile extends GameObject {
   }
   
   private void setPolynomialFunction(int degree, float[] values, float xs) {
-    this.function = new Function(degree, values, xs);
+    //this.function = new Function(degree, values, xs);
+    this.function = new LinearAngleFunc(0.001f, this.livingTime);
   }
   
   private void setSinusFunction(float a, float d, float xs) {
-    this.function = new Function(a, d, xs);
+    //this.function = new Function(a, d, xs);
   }
   
   private void setMovementType(String type) {
@@ -496,18 +522,21 @@ class Projectile extends GameObject {
   private void moveSpecial() {
     if(this.function != null) {
       //Vec2 VV = new Vec2(0, this.speed);
-      Vec2 VV  = new Vec2();
+      /*Vec2 VV  = new Vec2();
       VV = this.dir.copy();
       VV.normalize();
       VV = VV.mult(this.speed);
-      println(this.function.getAlphaDeg());
-      VV.rotate(this.function.getAlphaDeg());
-      super.move(VV);
+      //println(this.function.getAlphaDeg());
+      VV.rotate(this.function.get(this.livingTime));
+      super.move(VV);*/
       //...
       //...
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       //...
       //...
+      
+      this.dir = new Vec2(sin(function.get(this.livingTime)), -cos(function.get(livingTime)));
+      super.move(dir.mult(this.speed));
     }
   }
   
